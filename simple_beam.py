@@ -60,4 +60,46 @@ delta_max = (5 * w_metric * (L_metric**4)) / (384 * E_mod * I_val)
 
 print("\n--- DEFLECTION VERIFICATION ---")
 print(f"Python Mid-Span Deflection: {delta_max:.5f} meters")
+import handcalcs.render
 
+# Add this rendering block to isolate your hand calculations
+w = 15.0       # kN/m
+L = 10.0       # meters
+R_A = (w * L) / 2
+M_max = (w * L**2) / 8
+# --- AUTOMATED PDF GENERATOR ---
+# --- AUTOMATED PDF GENERATOR ---
+import os
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+
+# Define path directly to your master project folder
+pdf_path = os.path.expanduser("~/Desktop/Structural_Verification/automated_calculations.pdf")
+
+# Generate canvas drawing
+c = canvas.Canvas(pdf_path, pagesize=letter)
+
+# Header Text
+c.setFont("Helvetica-Bold", 16)
+c.drawString(100, 750, "STRUCTURAL HAND CALCULATIONS (AUTOMATED)")
+
+# Baseline Input Values
+c.setFont("Helvetica", 12)
+c.drawString(100, 710, f"Uniform Distributed Load (w) = {w} kN/m")
+c.drawString(100, 690, f"Beam Length (L) = {L} meters")
+
+# Section 1 - Reactions
+c.setFont("Helvetica-Bold", 12)
+c.drawString(100, 650, "1. Support Reaction Force (R_A):")
+c.setFont("Helvetica", 12)
+c.drawString(120, 630, f"R_A = (w * L) / 2 = ({w} * {L}) / 2 = {R_A} kN")
+
+# Section 2 - Bending Moments
+c.setFont("Helvetica-Bold", 12)
+c.drawString(100, 590, "2. Maximum Bending Moment (M_max):")
+c.setFont("Helvetica", 12)
+c.drawString(120, 570, f"M_max = (w * L^2) / 8 = ({w} * {L}^2) / 8 = {M_max} kNm")
+
+# Save and finalize the PDF document
+c.save()
+print("\n[SUCCESS] automated_calculations.pdf successfully generated on your Desktop!")
