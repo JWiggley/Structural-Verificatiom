@@ -3,7 +3,7 @@
 A scalable structural analysis framework mapping custom Python matrix analysis scripts and MASTAN2 finite element models against theoretical hand calculations. 
 
 ## Portfolio Documentation & Calculations
-* 💻 [View Automated Python Handcalcs](./automated_calculations.pdf) - Automated script-generated engineering report.
+* 💻 [View Automated Python Handcalcs](./automated_calculations.png) - Automated script-generated engineering report.
 * 📄 [View Handwritten Paper Calculations](./My%20Handwritten%20Calculations1.png) - Classical static mechanics verification.
 
 ## Baseline Verification Metrics (Single-Span Beam)

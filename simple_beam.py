@@ -68,38 +68,32 @@ L = 10.0       # meters
 R_A = (w * L) / 2
 M_max = (w * L**2) / 8
 # --- AUTOMATED PDF GENERATOR ---
-# --- AUTOMATED PDF GENERATOR ---
+# --- AUTOMATED PORTFOLIO IMAGE GENERATOR ---
 import os
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
+import matplotlib.pyplot as plt
 
-# Define path directly to your master project folder
-pdf_path = os.path.expanduser("~/Desktop/Structural_Verification/automated_calculations.pdf")
+# Define path directly into your master folder layout
+img_path = os.path.expanduser("~/Desktop/Structural_Verification/automated_calculations.png")
 
-# Generate canvas drawing
-c = canvas.Canvas(pdf_path, pagesize=letter)
+# Create a clean canvas for text reporting
+fig, ax = plt.subplots(figsize=(6, 5))
+ax.axis('off')  # Hide graph axes
 
-# Header Text
-c.setFont("Helvetica-Bold", 16)
-c.drawString(100, 750, "STRUCTURAL HAND CALCULATIONS (AUTOMATED)")
+# Draw the engineering report layout text
+ax.text(0.05, 0.90, "STRUCTURAL HAND CALCULATIONS (AUTOMATED)", fontsize=12, fontweight='bold', color='#2c3e50')
+ax.text(0.05, 0.80, f"Uniform Distributed Load (w) = {w} kN/m", fontsize=11)
+ax.text(0.05, 0.73, f"Beam Length (L) = {L} meters", fontsize=11)
 
-# Baseline Input Values
-c.setFont("Helvetica", 12)
-c.drawString(100, 710, f"Uniform Distributed Load (w) = {w} kN/m")
-c.drawString(100, 690, f"Beam Length (L) = {L} meters")
+ax.text(0.05, 0.58, "1. Support Reaction Force (R_A):", fontsize=11, fontweight='bold')
+ax.text(0.05, 0.50, f"Formula: R_A = (w * L) / 2", fontsize=10, style='italic')
+ax.text(0.05, 0.42, f"R_A = ({w} * {L}) / 2 = {R_A:.2f} kN", fontsize=11, color='#e74c3c', fontweight='bold')
 
-# Section 1 - Reactions
-c.setFont("Helvetica-Bold", 12)
-c.drawString(100, 650, "1. Support Reaction Force (R_A):")
-c.setFont("Helvetica", 12)
-c.drawString(120, 630, f"R_A = (w * L) / 2 = ({w} * {L}) / 2 = {R_A} kN")
+ax.text(0.05, 0.28, "2. Maximum Bending Moment (M_max):", fontsize=11, fontweight='bold')
+ax.text(0.05, 0.20, f"Formula: M_max = (w * L^2) / 8", fontsize=10, style='italic')
+ax.text(0.05, 0.12, f"M_max = ({w} * {L}^2) / 8 = {M_max:.2f} kNm", fontsize=11, color='#e74c3c', fontweight='bold')
 
-# Section 2 - Bending Moments
-c.setFont("Helvetica-Bold", 12)
-c.drawString(100, 590, "2. Maximum Bending Moment (M_max):")
-c.setFont("Helvetica", 12)
-c.drawString(120, 570, f"M_max = (w * L^2) / 8 = ({w} * {L}^2) / 8 = {M_max} kNm")
+# Save as a clean portfolio image card
+plt.savefig(img_path, dpi=200, bbox_inches='tight')
+plt.close()
 
-# Save and finalize the PDF document
-c.save()
-print("\n[SUCCESS] automated_calculations.pdf successfully generated on your Desktop!")
+print("\n[SUCCESS] automated_calculations.png successfully generated inside your project folder!")
