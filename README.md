@@ -1,6 +1,6 @@
 # Structural Verification Portfolio
 
-A scalable structural analysis framework mapping custom Python matrix analysis scripts and MASTAN2 finite element models against theoretical hand calculations. 
+A scalable structural analysis framework mapping custom Python matrix analysis scripts, Risa 3D, and MASTAN2 finite element models against theoretical hand calculations. 
 
 ## Portfolio Documentation & Calculations
 * 💻 [View Automated Python Handcalcs](./automated_calculations.png) - Automated script-generated engineering report.
